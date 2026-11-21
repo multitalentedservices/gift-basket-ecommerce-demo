@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart — The Gilded Basket (Demo)</title>
+<meta name="description" content="Review your demo cart: adjust quantities, remove items and see live totals including the free-delivery threshold.">
+<meta property="og:title" content="Cart — The Gilded Basket (Demo)">
+<meta property="og:description" content="Your hand-packed baskets, ready for demo checkout.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1E3F32">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%231E3F32'/%3E%3Cpath d='M14 20h20l-2.2 12.2a3 3 0 0 1-3 2.8H19.2a3 3 0 0 1-3-2.8L14 20Z' fill='none' stroke='%23FAF7F2' stroke-width='2.4'/%3E%3Cpath d='M17 20c1-4.4 3.8-6.6 7-6.6s6 2.2 7 6.6' fill='none' stroke='%23D96B52' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="demo-ribbon">Demonstration storefront — <strong>no real orders are taken</strong> · Portfolio piece</div>
+
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="logo" href="index.html" aria-label="The Gilded Basket — home">
+      <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#1E3F32"/><path d="M14 20h20l-2.2 12.2a3 3 0 0 1-3 2.8H19.2a3 3 0 0 1-3-2.8L14 20Z" fill="none" stroke="#FAF7F2" stroke-width="2.4"/><path d="M17 20c1-4.4 3.8-6.6 7-6.6s6 2.2 7 6.6" fill="none" stroke="#D96B52" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span class="logo-text">The Gilded Basket<small>Gift Atelier · Lahore</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="build.html">Build Your Basket</a>
+      <a href="occasions.html">Occasions</a>
+      <a href="corporate.html">Corporate</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="icon-btn" data-open-cart aria-label="Open cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 9h16l-1.5 9.5a2 2 0 0 1-2 1.5h-9a2 2 0 0 1-2-1.5L4 9Z"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/></svg>
+        <span class="cart-count" hidden>0</span>
+      </button>
+      <button type="button" class="icon-btn nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="build.html">Build Your Basket</a>
+    <a href="occasions.html">Occasions</a>
+    <a href="corporate.html">Corporate</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html" aria-current="page">Cart</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> · <b>Cart</b></nav>
+      <span class="eyebrow">Almost theirs</span>
+      <h1>Your <em>cart</em></h1>
+      <p>Quantities update instantly and your cart is remembered on this device — leave and come back, it will be exactly as you left it.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="empty-state" id="cart-empty" hidden>
+        <h3>Your cart is empty</h3>
+        <p>No baskets yet. The shelf is fourteen deep and every one of them photographs well.</p>
+        <a class="btn" href="shop.html">Browse the shop</a>
+        <a class="btn btn--ghost" href="build.html" style="margin-left:.5rem">Build your own</a>
+      </div>
+
+      <div class="cart-layout" id="cart-layout">
+        <div id="cart-items" aria-live="polite"></div>
+        <aside class="summary-card" aria-label="Order summary">
+          <h3>Summary</h3>
+          <div class="sum-line"><span>Subtotal</span><strong id="ct-subtotal">PKR 0</strong></div>
+          <div class="sum-line"><span>Delivery</span><strong id="ct-delivery">—</strong></div>
+          <div class="sum-line total"><span>Total</span><strong id="ct-total">PKR 0</strong></div>
+          <p id="ct-note" style="font-size:.88rem;color:var(--ink-soft);margin:.7rem 0 1.2rem"></p>
+          <a class="btn btn--terra btn--block" href="checkout.html">Proceed to checkout (demo)</a>
+          <a class="btn btn--ghost btn--block" href="shop.html" style="margin-top:.6rem">Continue shopping</a>
+          <p style="font-size:.85rem;color:var(--ink-soft);margin-top:1rem">Demo checkout: no payment is processed and nothing is sent anywhere.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-in">
+      <div class="footer-brand">
+        <a class="logo" href="index.html" aria-label="The Gilded Basket — home">
+          <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#FAF7F2"/><path d="M14 20h20l-2.2 12.2a3 3 0 0 1-3 2.8H19.2a3 3 0 0 1-3-2.8L14 20Z" fill="none" stroke="#1E3F32" stroke-width="2.4"/><path d="M17 20c1-4.4 3.8-6.6 7-6.6s6 2.2 7 6.6" fill="none" stroke="#D96B52" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <span class="logo-text">The Gilded Basket<small style="color:#F0BBA6">Gift Atelier · Lahore</small></span>
+        </a>
+        <p>An editorial gift atelier composing small-batch baskets to order — designed, packed and delivered with unreasonable care.</p>
+      </div>
+      <nav aria-label="Shop">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All baskets</a></li>
+          <li><a href="shop.html?cat=signature">Signature</a></li>
+          <li><a href="shop.html?cat=chocolate">Chocolate</a></li>
+          <li><a href="shop.html?cat=dry-fruits">Dry Fruits &amp; Nuts</a></li>
+          <li><a href="build.html">Build Your Basket</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About the atelier</a></li>
+          <li><a href="occasions.html">Occasions</a></li>
+          <li><a href="corporate.html">Corporate gifting</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+          <li><a href="cart.html">Your cart</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h4>Visit or write</h4>
+        <ul>
+          <li>14-B Gulberg III, Lahore (demo address)</li>
+          <li><a href="mailto:hello@gildedbasket.example">hello@gildedbasket.example</a></li>
+          <li><a href="tel:+924235771234">+92 42 3577 1234</a></li>
+          <li>Mon–Sat, 10am–8pm PKT</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> The Gilded Basket — demonstration storefront. No real orders are taken.</span>
+      <span class="demo-tag">DEMO · A BalanceBit Solutions portfolio piece · Produced by MTS</span>
+    </div>
+  </div>
+</footer>
+
+<div class="drawer-overlay"></div>
+<aside class="cart-drawer" aria-hidden="true" aria-label="Shopping cart">
+  <div class="drawer-head">
+    <h3>Your cart</h3>
+    <button type="button" class="icon-btn" data-close-cart aria-label="Close cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body"></div>
+  <div class="drawer-foot"></div>
+</aside>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

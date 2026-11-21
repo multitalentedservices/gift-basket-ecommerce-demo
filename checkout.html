@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — The Gilded Basket (Demo)</title>
+<meta name="description" content="Demo checkout: delivery details with full validation, order summary and an order-confirmation state. No real payment is processed.">
+<meta property="og:title" content="Checkout — The Gilded Basket (Demo)">
+<meta property="og:description" content="A complete front-end checkout flow, demonstrated end to end.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1E3F32">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%231E3F32'/%3E%3Cpath d='M14 20h20l-2.2 12.2a3 3 0 0 1-3 2.8H19.2a3 3 0 0 1-3-2.8L14 20Z' fill='none' stroke='%23FAF7F2' stroke-width='2.4'/%3E%3Cpath d='M17 20c1-4.4 3.8-6.6 7-6.6s6 2.2 7 6.6' fill='none' stroke='%23D96B52' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="demo-ribbon">Demo checkout — <strong>no payment is processed</strong> · Demonstration storefront</div>
+
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="logo" href="index.html" aria-label="The Gilded Basket — home">
+      <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#1E3F32"/><path d="M14 20h20l-2.2 12.2a3 3 0 0 1-3 2.8H19.2a3 3 0 0 1-3-2.8L14 20Z" fill="none" stroke="#FAF7F2" stroke-width="2.4"/><path d="M17 20c1-4.4 3.8-6.6 7-6.6s6 2.2 7 6.6" fill="none" stroke="#D96B52" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span class="logo-text">The Gilded Basket<small>Gift Atelier · Lahore</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="build.html">Build Your Basket</a>
+      <a href="occasions.html">Occasions</a>
+      <a href="corporate.html">Corporate</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="icon-btn" data-open-cart aria-label="Open cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 9h16l-1.5 9.5a2 2 0 0 1-2 1.5h-9a2 2 0 0 1-2-1.5L4 9Z"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/></svg>
+        <span class="cart-count" hidden>0</span>
+      </button>
+      <button type="button" class="icon-btn nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="build.html">Build Your Basket</a>
+    <a href="occasions.html">Occasions</a>
+    <a href="corporate.html">Corporate</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> · <a href="cart.html">Cart</a> · <b>Checkout</b></nav>
+      <span class="eyebrow">Demo checkout</span>
+      <h1>Where should the <em>beautiful thing</em> go?</h1>
+      <p>Every field is validated as you go. This is a demonstration — your details never leave this browser, and no payment is taken.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="empty-state" id="checkout-empty" hidden>
+        <h3>Nothing to check out yet</h3>
+        <p>Your cart is empty, so there is no order to complete. The shelf, however, is full.</p>
+        <a class="btn" href="shop.html">Browse the shop</a>
+      </div>
+
+      <div id="checkout-main">
+        <div class="cart-layout">
+          <div class="checkout-card">
+            <h2>Delivery details</h2>
+            <form id="checkout-form" novalidate>
+              <div class="field">
+                <label for="co-name">Full name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="co-name" autocomplete="name" placeholder="e.g. Ayesha Khan" required>
+                <p class="error-msg">Please enter the recipient's full name (at least 3 characters).</p>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="co-email">Email <span class="req" aria-hidden="true">*</span></label>
+                  <input type="email" id="co-email" autocomplete="email" placeholder="you@email.com" required>
+                  <p class="error-msg">Please enter a valid email address.</p>
+                </div>
+                <div class="field">
+                  <label for="co-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+                  <input type="tel" id="co-phone" autocomplete="tel" placeholder="03xx xxxxxxx" required>
+                  <p class="error-msg">Please enter a valid phone number.</p>
+                </div>
+              </div>
+              <div class="field">
+                <label for="co-address">Street address <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="co-address" autocomplete="street-address" placeholder="House, street, area" required>
+                <p class="error-msg">Please enter a complete street address.</p>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="co-city">City <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="co-city" autocomplete="address-level2" placeholder="e.g. Lahore" required>
+                  <p class="error-msg">Please enter the delivery city.</p>
+                </div>
+                <div class="field">
+                  <label for="co-date">Preferred delivery date <span class="req" aria-hidden="true">*</span></label>
+                  <input type="date" id="co-date" required>
+                  <p class="error-msg">Please choose a date from today onwards.</p>
+                </div>
+              </div>
+              <div class="field">
+                <label>Payment method <span class="req" aria-hidden="true">*</span></label>
+                <div class="radio-row" role="radiogroup" aria-label="Payment method">
+                  <div class="radio-card">
+                    <input type="radio" name="pay" id="pay-cod" checked>
+                    <label for="pay-cod"><strong>Cash on delivery</strong><span>Pay the courier — the classic way.</span></label>
+                  </div>
+                  <div class="radio-card">
+                    <input type="radio" name="pay" id="pay-card">
+                    <label for="pay-card"><strong>Card (demo)</strong><span>Shown for flow completeness — never charged.</span></label>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label for="co-notes">Order notes <span style="color:var(--ink-soft);font-weight:500">(optional — gate codes, card wording, surprises to keep)</span></label>
+                <textarea id="co-notes" style="min-height:84px" placeholder="Anything the courier or the card-writer should know…"></textarea>
+              </div>
+              <button type="submit" class="btn btn--terra btn--block">Place demo order</button>
+              <p style="font-size:.85rem;color:var(--ink-soft);margin-top:.9rem;text-align:center">By placing this demo order you agree to absolutely nothing — it is a demonstration.</p>
+            </form>
+          </div>
+
+          <aside class="summary-card" aria-label="Order summary">
+            <h3>Order summary</h3>
+            <div id="order-summary"></div>
+            <p style="font-size:.86rem;color:var(--ink-soft);margin-top:1rem">Baskets are packed within 48 hours of the (demo) order. Hand-written card included with every basket.</p>
+            <a class="btn btn--ghost btn--block" href="cart.html" style="margin-top:1rem">Back to cart</a>
+          </aside>
+        </div>
+      </div>
+
+      <div class="confirmation" id="confirmation" hidden>
+        <div class="conf-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <span class="eyebrow">Demo order placed</span>
+        <h2 style="margin-top:.6rem">Consider it sent.</h2>
+        <p class="order-no" id="conf-order-no">GB-2026-0000</p>
+        <p id="conf-text"></p>
+        <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem">
+          <a class="btn" href="shop.html">Continue shopping</a>
+          <a class="btn btn--ghost" href="index.html">Back to home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-in">
+      <div class="footer-brand">
+        <a class="logo" href="index.html" aria-label="The Gilded Basket — home">
+          <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#FAF7F2"/><path d="M14 20h20l-2.2 12.2a3 3 0 0 1-3 2.8H19.2a3 3 0 0 1-3-2.8L14 20Z" fill="none" stroke="#1E3F32" stroke-width="2.4"/><path d="M17 20c1-4.4 3.8-6.6 7-6.6s6 2.2 7 6.6" fill="none" stroke="#D96B52" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <span class="logo-text">The Gilded Basket<small style="color:#F0BBA6">Gift Atelier · Lahore</small></span>
+        </a>
+        <p>An editorial gift atelier composing small-batch baskets to order — designed, packed and delivered with unreasonable care.</p>
+      </div>
+      <nav aria-label="Shop">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All baskets</a></li>
+          <li><a href="shop.html?cat=signature">Signature</a></li>
+          <li><a href="shop.html?cat=chocolate">Chocolate</a></li>
+          <li><a href="shop.html?cat=dry-fruits">Dry Fruits &amp; Nuts</a></li>
+          <li><a href="build.html">Build Your Basket</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About the atelier</a></li>
+          <li><a href="occasions.html">Occasions</a></li>
+          <li><a href="corporate.html">Corporate gifting</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+          <li><a href="cart.html">Your cart</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h4>Visit or write</h4>
+        <ul>
+          <li>14-B Gulberg III, Lahore (demo address)</li>
+          <li><a href="mailto:hello@gildedbasket.example">hello@gildedbasket.example</a></li>
+          <li><a href="tel:+924235771234">+92 42 3577 1234</a></li>
+          <li>Mon–Sat, 10am–8pm PKT</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> The Gilded Basket — demonstration storefront. No real orders are taken.</span>
+      <span class="demo-tag">DEMO · A BalanceBit Solutions portfolio piece · Produced by MTS</span>
+    </div>
+  </div>
+</footer>
+
+<div class="drawer-overlay"></div>
+<aside class="cart-drawer" aria-hidden="true" aria-label="Shopping cart">
+  <div class="drawer-head">
+    <h3>Your cart</h3>
+    <button type="button" class="icon-btn" data-close-cart aria-label="Close cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body"></div>
+  <div class="drawer-foot"></div>
+</aside>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

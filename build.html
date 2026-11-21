@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Basket — The Gilded Basket (Demo)</title>
+<meta name="description" content="Compose a custom gift basket step by step — choose the basket, the treats and the finishing touches, with a live price total. Demonstration storefront.">
+<meta property="og:title" content="Build Your Basket — The Gilded Basket (Demo)">
+<meta property="og:description" content="Your picks, our packing. A step-by-step custom basket builder with live pricing.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1E3F32">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%231E3F32'/%3E%3Cpath d='M14 20h20l-2.2 12.2a3 3 0 0 1-3 2.8H19.2a3 3 0 0 1-3-2.8L14 20Z' fill='none' stroke='%23FAF7F2' stroke-width='2.4'/%3E%3Cpath d='M17 20c1-4.4 3.8-6.6 7-6.6s6 2.2 7 6.6' fill='none' stroke='%23D96B52' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="demo-ribbon">Demonstration storefront — <strong>no real orders are taken</strong> · Portfolio piece</div>
+
+<header class="site-header">
+  <div class="wrap header-in">
+    <a class="logo" href="index.html" aria-label="The Gilded Basket — home">
+      <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#1E3F32"/><path d="M14 20h20l-2.2 12.2a3 3 0 0 1-3 2.8H19.2a3 3 0 0 1-3-2.8L14 20Z" fill="none" stroke="#FAF7F2" stroke-width="2.4"/><path d="M17 20c1-4.4 3.8-6.6 7-6.6s6 2.2 7 6.6" fill="none" stroke="#D96B52" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span class="logo-text">The Gilded Basket<small>Gift Atelier · Lahore</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="build.html" aria-current="page">Build Your Basket</a>
+      <a href="occasions.html">Occasions</a>
+      <a href="corporate.html">Corporate</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="icon-btn" data-open-cart aria-label="Open cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 9h16l-1.5 9.5a2 2 0 0 1-2 1.5h-9a2 2 0 0 1-2-1.5L4 9Z"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/></svg>
+        <span class="cart-count" hidden>0</span>
+      </button>
+      <button type="button" class="icon-btn nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="build.html" aria-current="page">Build Your Basket</a>
+    <a href="occasions.html">Occasions</a>
+    <a href="corporate.html">Corporate</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> · <b>Build Your Basket</b></nav>
+      <span class="eyebrow">The composer</span>
+      <h1>Your picks. <em>Our packing.</em></h1>
+      <p>Four short steps: the basket, the treats, the finishing touches, and the words. The price updates live on the right — no surprises, ever.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="wrap">
+      <div id="builder-root">
+        <div class="steps-nav" role="list" aria-label="Builder steps">
+          <button type="button" class="step-pill active" data-step="1"><span class="sn">1</span> Basket</button>
+          <button type="button" class="step-pill" data-step="2"><span class="sn">2</span> Treats</button>
+          <button type="button" class="step-pill" data-step="3"><span class="sn">3</span> Finishing touches</button>
+          <button type="button" class="step-pill" data-step="4"><span class="sn">4</span> Review &amp; card</button>
+        </div>
+
+        <p id="builder-error" class="form-msg err" role="alert" tabindex="-1" hidden style="margin-bottom:1.2rem"></p>
+
+        <div class="builder-layout">
+          <div>
+            <!-- STEP 1 -->
+            <div class="step-panel active" data-panel="1">
+              <h2 style="font-size:1.7rem;margin-bottom:.5rem">Step 1 — Choose the basket</h2>
+              <p style="color:var(--ink-soft);margin-bottom:1.4rem">The vessel matters. It is the part they keep.</p>
+              <div class="opt-grid" id="box-grid"></div>
+              <div class="step-actions">
+                <span></span>
+                <button type="button" class="btn" data-next>Continue to treats →</button>
+              </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="step-panel" data-panel="2">
+              <h2 style="font-size:1.7rem;margin-bottom:.5rem">Step 2 — Fill it with treats</h2>
+              <p style="color:var(--ink-soft);margin-bottom:1.4rem">Choose at least one. Most beautiful baskets land between five and eight.</p>
+              <div class="check-grid" id="treat-grid"></div>
+              <div class="step-actions">
+                <button type="button" class="btn btn--ghost" data-back>← Back</button>
+                <button type="button" class="btn" data-next>Continue to finishing touches →</button>
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="step-panel" data-panel="3">
+              <h2 style="font-size:1.7rem;margin-bottom:.5rem">Step 3 — Finishing touches</h2>
+              <p style="color:var(--ink-soft);margin-bottom:1.4rem">Optional, but this is where a gift becomes a gesture.</p>
+              <div class="check-grid" id="extra-grid"></div>
+              <div class="step-actions">
+                <button type="button" class="btn btn--ghost" data-back>← Back</button>
+                <button type="button" class="btn" data-next>Review your basket →</button>
+              </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="step-panel" data-panel="4">
+              <h2 style="font-size:1.7rem;margin-bottom:.5rem">Step 4 — Review &amp; the card</h2>
+              <p style="color:var(--ink-soft);margin-bottom:1.4rem">Check the composition, then write the words we will copy by hand.</p>
+              <div id="review-box"></div>
+              <div style="margin-top:1.6rem">
+                <div class="field">
+                  <label for="f-recipient">Recipient's name <span style="color:var(--ink-soft);font-weight:500">(optional)</span></label>
+                  <input type="text" id="f-recipient" placeholder="e.g. Ayesha Khan" autocomplete="off">
+                </div>
+                <div class="field">
+                  <label for="f-message">Card message <span style="color:var(--ink-soft);font-weight:500">(optional, hand-written by us)</span></label>
+                  <textarea id="f-message" placeholder="Write the words — we will write them beautifully."></textarea>
+                </div>
+              </div>
+              <div class="step-actions">
+                <button type="button" class="btn btn--ghost" data-back>← Back</button>
+                <button type="button" class="btn btn--terra" id="builder-add" disabled>Add custom basket to cart</button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="summary-card" aria-label="Basket summary">
+            <h3>Your composition</h3>
+            <div id="sum-lines"><p class="sum-empty">Choose a basket to begin.</p></div>
+            <div class="sum-line total"><span>Total</span><strong id="sum-total">PKR 0</strong></div>
+            <p style="font-size:.86rem;color:var(--ink-soft);margin-top:.8rem">Delivery calculated at checkout — free over PKR 10,000. Hand-written card always included.</p>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-in">
+      <div class="footer-brand">
+        <a class="logo" href="index.html" aria-label="The Gilded Basket — home">
+          <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#FAF7F2"/><path d="M14 20h20l-2.2 12.2a3 3 0 0 1-3 2.8H19.2a3 3 0 0 1-3-2.8L14 20Z" fill="none" stroke="#1E3F32" stroke-width="2.4"/><path d="M17 20c1-4.4 3.8-6.6 7-6.6s6 2.2 7 6.6" fill="none" stroke="#D96B52" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <span class="logo-text">The Gilded Basket<small style="color:#F0BBA6">Gift Atelier · Lahore</small></span>
+        </a>
+        <p>An editorial gift atelier composing small-batch baskets to order — designed, packed and delivered with unreasonable care.</p>
+      </div>
+      <nav aria-label="Shop">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All baskets</a></li>
+          <li><a href="shop.html?cat=signature">Signature</a></li>
+          <li><a href="shop.html?cat=chocolate">Chocolate</a></li>
+          <li><a href="shop.html?cat=dry-fruits">Dry Fruits &amp; Nuts</a></li>
+          <li><a href="build.html">Build Your Basket</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About the atelier</a></li>
+          <li><a href="occasions.html">Occasions</a></li>
+          <li><a href="corporate.html">Corporate gifting</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+          <li><a href="cart.html">Your cart</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h4>Visit or write</h4>
+        <ul>
+          <li>14-B Gulberg III, Lahore (demo address)</li>
+          <li><a href="mailto:hello@gildedbasket.example">hello@gildedbasket.example</a></li>
+          <li><a href="tel:+924235771234">+92 42 3577 1234</a></li>
+          <li>Mon–Sat, 10am–8pm PKT</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> The Gilded Basket — demonstration storefront. No real orders are taken.</span>
+      <span class="demo-tag">DEMO · A BalanceBit Solutions portfolio piece · Produced by MTS</span>
+    </div>
+  </div>
+</footer>
+
+<div class="drawer-overlay"></div>
+<aside class="cart-drawer" aria-hidden="true" aria-label="Shopping cart">
+  <div class="drawer-head">
+    <h3>Your cart</h3>
+    <button type="button" class="icon-btn" data-close-cart aria-label="Close cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body"></div>
+  <div class="drawer-foot"></div>
+</aside>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/build.js"></script>
+</body>
+</html>
