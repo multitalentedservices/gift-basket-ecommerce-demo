@@ -71,7 +71,7 @@ function visualHTML(item, cls) {
   }
   if (src) {
     return '<div class="pvisual ' + (cls || "") + '"><img src="' + src + '" alt="' +
-      escHTML(item.name || "Gift basket") + '" loading="lazy" decoding="async"></div>';
+      escHTML(item.name || "Gift basket") + '" decoding="async"></div>';
   }
   return '<div class="pvisual pvisual--motif ' + (cls || "") + '" role="img" aria-label="' +
     escHTML(item.name || "Gift basket") + '">' + motifSVG(item.motif) + "</div>";
@@ -288,11 +288,13 @@ if (typeof document !== "undefined") {
       if (window.GB_onCartChange) window.GB_onCartChange();
     });
 
-    /* Scroll reveal — ROBUST pattern (v2). CSS hides .reveal only when
-       JS is active (.js class). Here we observe everything present AND
-       anything injected later (GB_revealScan), and a hard safety timer
-       reveals ALL remaining elements after 2.2s no matter what — no
-       section can ever stay permanently invisible. */
+    /* Scroll reveal — SAFE pattern (v3). CSS never gates opacity:
+       .reveal elements are fully visible at all times and the
+       observer only settles a gentle position rise (transform).
+       We observe everything present AND anything injected later
+       (GB_revealScan), and a hard safety timer settles ALL remaining
+       elements after 2.2s no matter what — no section or photo can
+       ever render blank at any scroll speed. */
     const revealSeen = new WeakSet();
     let revealIO = null;
     function revealNow(el) { el.classList.add("in"); }

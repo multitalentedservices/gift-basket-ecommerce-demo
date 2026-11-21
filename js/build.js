@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   /* --- Render step 1: boxes --- */
   document.getElementById("box-grid").innerHTML = BUILDER_BOXES.map(function (b) {
     return '<div class="opt-card"><input type="radio" name="bbox" id="box-' + b.id + '" value="' + b.id + '">' +
-      '<label for="box-' + b.id + '"><img class="opt-swatch" src="' + (BOX_IMG[b.id] || "") + '" alt="" loading="lazy">' +
+      '<label for="box-' + b.id + '"><img class="opt-swatch" src="' + (BOX_IMG[b.id] || "") + '" alt="">' +
       "<h4>" + b.name + "</h4><p>" + b.desc + '</p><span class="opt-price">' + fmtPKR(b.price) + "</span></label></div>";
   }).join("");
 

@@ -152,7 +152,7 @@ input,select,textarea{font:inherit;font-size:16px;color:inherit;min-width:0}
 
 /* ---------- Hero (home) ---------- */
 .hero{position:relative;overflow:hidden;background:var(--cream)}
-.hero-in{display:grid;grid-template-columns:1fr;gap:2.2rem;align-items:center;padding:clamp(2.4rem,7vw,5.5rem) 0}
+.hero-in{display:grid;grid-template-columns:1fr;gap:2.2rem;align-items:center;padding-block:clamp(2.4rem,7vw,5.5rem)}
 .hero h1{font-size:clamp(2.55rem,11vw,5.1rem);letter-spacing:-.01em;line-height:1.08}
 .hero h1 em{font-style:italic;color:var(--terra-dark)}
 .hero h1 .u-emerald{color:var(--emerald);font-style:normal}
@@ -388,7 +388,7 @@ input,select,textarea{font:inherit;font-size:16px;color:inherit;min-width:0}
 .result-count{font-size:.93rem;color:var(--ink-soft);font-weight:600}
 .filter-panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:1.1rem;min-width:0}
 .filter-panel h3{font-size:1.02rem;font-family:var(--font-body);font-weight:750;margin-bottom:.8rem}
-.filter-list{display:flex;flex-direction:row;flex-wrap:nowrap;gap:.5rem;overflow-x:auto;padding-bottom:.35rem;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%}
+.filter-list{display:flex;flex-direction:row;flex-wrap:nowrap;gap:.5rem;overflow-x:auto;padding-bottom:.35rem;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
 .filter-list button{
   text-align:left;background:none;border:1.5px solid var(--line);padding:.55rem .85rem;border-radius:999px;font-weight:600;
   display:inline-flex;gap:.45rem;align-items:center;min-height:46px;color:var(--charcoal);white-space:nowrap;flex:none;
@@ -490,6 +490,7 @@ input,select,textarea{font:inherit;font-size:16px;color:inherit;min-width:0}
 
 /* ---------- Cart / checkout ---------- */
 .cart-layout{display:grid;grid-template-columns:1fr;gap:2rem;align-items:start}
+.cart-layout[hidden]{display:none}
 .cart-item{
   display:grid;grid-template-columns:84px 1fr;gap:1rem;background:var(--paper);
   border:1px solid var(--line);border-radius:var(--radius);padding:1rem;margin-bottom:1rem;align-items:center;
@@ -576,15 +577,17 @@ input,select,textarea{font:inherit;font-size:16px;color:inherit;min-width:0}
 .toast.show{transform:translate(-50%,0)}
 .toast svg{width:19px;height:19px;color:var(--terra-tint);flex:none}
 
-/* ---------- Reveal animation (SAFE pattern) ----------
-   Content is VISIBLE BY DEFAULT. Only when JS is running (the
-   .js class is set by an inline script before CSS paints) may
-   elements start hidden — and app.js then guarantees reveal:
-   IntersectionObserver + a timed safety fallback that reveals
-   everything, so no section can ever stay invisible. */
+/* ---------- Reveal animation (SAFE pattern, v3) ----------
+   Content is VISIBLE BY DEFAULT and is NEVER opacity-gated.
+   The reveal animates POSITION ONLY (a gentle 18px rise): an
+   element's opacity is 1 at every moment, with or without JS,
+   so no scroll speed, screenshot or slow connection can ever
+   freeze a section or a photo panel blank. app.js adds .in via
+   IntersectionObserver (plus a timed safety fallback) purely to
+   settle the rise — visibility never depends on it. */
 .reveal{opacity:1}
-.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
-.js .reveal.in{opacity:1;transform:none}
+.js .reveal{transform:translateY(18px);transition:transform .6s var(--ease)}
+.js .reveal.in{transform:none}
 .js .reveal-d1{transition-delay:.08s}
 .js .reveal-d2{transition-delay:.16s}
 .js .reveal-d3{transition-delay:.24s}
@@ -628,7 +631,7 @@ input,select,textarea{font:inherit;font-size:16px;color:inherit;min-width:0}
   .shop-layout{grid-template-columns:250px 1fr;gap:2.2rem}
   .search-box{flex:1 1 240px;max-width:430px}
   .filter-panel{position:sticky;top:calc(var(--header-h) + 18px);padding:1.4rem}
-  .filter-list{flex-direction:column;flex-wrap:nowrap;overflow:visible;gap:.3rem;padding-bottom:0}
+  .filter-list{flex-direction:column;flex-wrap:nowrap;overflow:visible;gap:.3rem;padding-bottom:0;-webkit-mask-image:none;mask-image:none}
   .filter-list button{border:none;border-radius:10px;padding:.6rem .8rem;width:100%;justify-content:space-between}
   .filter-list button .n{background:none;padding:0;opacity:.75}
   .filter-list button.active .n{background:none}
@@ -655,6 +658,12 @@ input,select,textarea{font:inherit;font-size:16px;color:inherit;min-width:0}
 @media (min-width:920px){
   .how-grid--2{grid-template-columns:repeat(2,1fr)}
 }
+/* Narrow phones: tier price suffix gets its own line instead of
+   wrapping mid-phrase ("baskets" alone on a line) */
+@media (max-width:560px){
+  .tier-price small{display:block;margin-top:.25rem}
+}
+
 /* Very small phones (<=380px): tighten the header so logo + actions fit */
 @media (max-width:380px){
   .header-in{gap:.55rem}
