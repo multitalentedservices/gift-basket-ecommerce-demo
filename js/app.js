@@ -318,8 +318,9 @@ if (typeof document !== "undefined") {
     window.GB_revealScan(document);
     setTimeout(function () { window.GB_revealAll(document); }, 2200);
 
-    /* FAQ accordion */
-    document.querySelectorAll(".faq-item").forEach(function (item) {
+    /* FAQ accordion — items marked data-alpine-faq are owned by
+       the Alpine state system (premium pages); skip those here. */
+    document.querySelectorAll(".faq-item:not([data-alpine-faq])").forEach(function (item) {
       const q = item.querySelector(".faq-q");
       const a = item.querySelector(".faq-a");
       if (!q || !a) return;

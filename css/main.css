@@ -52,7 +52,7 @@ body{
 }
 img,svg{display:block;max-width:100%}
 img{height:auto}
-a{color:var(--emerald-ink);text-underline-offset:3px}
+a{color:var(--emerald-ink);text-decoration:none;text-underline-offset:3px}
 a:hover{color:var(--terra-dark)}
 h1,h2,h3,h4{font-family:var(--font-display);font-weight:560;line-height:1.14;margin:0;color:var(--charcoal);overflow-wrap:break-word}
 p{margin:0}
@@ -682,4 +682,63 @@ input,select,textarea{font:inherit;font-size:16px;color:inherit;min-width:0}
   .js .reveal{opacity:1;transform:none}
   .hero-img{animation:none}
   .marquee-track{animation:none}
+}
+
+/* ============================================================
+   PREMIUM LAYER — 2026-11-22 upgrade pilot
+   View Transitions (all pages, 0 JS) · masked line-rise hero ·
+   Swiper occasion rail (index) · Alpine state helpers.
+   Base link/list rules above are untouched (P1 preserved).
+   ============================================================ */
+
+/* Cross-document page transitions (~400ms) where the browser
+   supports them; unsupported browsers navigate instantly. */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:gb-vt-out .38s ease both}
+::view-transition-new(root){animation:gb-vt-in .38s ease both}
+@keyframes gb-vt-out{to{opacity:0}}
+@keyframes gb-vt-in{from{opacity:0}}
+
+/* Alpine: hide cloaked elements until Alpine starts them.
+   With JS disabled the error line simply never appears —
+   the builder is static and complete without it. */
+[x-cloak]{display:none!important}
+
+/* Masked line-rise hero headline (index). Lines are plain
+   inline spans without JS — the mask + rise exist only under
+   .js, the animation always ends fully visible, and the
+   global reduced-motion block above stills it entirely. */
+.js .lm{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.js .lm-in{display:block;animation:lm-rise .85s cubic-bezier(.22,1,.36,1) both}
+.js .lm:nth-child(2) .lm-in{animation-delay:.1s}
+.js .lm:nth-child(3) .lm-in{animation-delay:.2s}
+@keyframes lm-rise{from{transform:translateY(112%)}}
+
+/* Occasion rail (index) — Swiper when JS is present; a
+   scroll-snap rail with every card reachable when it is not.
+   Slides carry fixed heights so layout never shifts (CLS). */
+.occ-rail{padding-bottom:.4rem}
+.occ-rail .occ-card{height:100%;min-height:238px;margin:0}
+.occ-rail .swiper-slide{height:auto}
+.occ-rail:not(.swiper-initialized) .swiper-wrapper{display:flex;gap:1.1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:.6rem}
+.occ-rail:not(.swiper-initialized) .swiper-slide{flex:0 0 min(78vw,330px);scroll-snap-align:start}
+.occ-rail:not(.swiper-initialized) .occ-nav{display:none}
+.occ-nav{display:flex;align-items:center;gap:.9rem;margin-top:1.1rem}
+.occ-nav .swiper-pagination{position:static;width:auto}
+.occ-nav .swiper-pagination-bullet{background:var(--emerald);opacity:.28}
+.occ-nav .swiper-pagination-bullet-active{opacity:1}
+.occ-prev,.occ-next{
+  width:48px;height:48px;border-radius:50%;border:1.5px solid var(--emerald);
+  background:transparent;color:var(--emerald-ink);font-size:1.15rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex:none;
+  transition:background .25s var(--ease),color .25s var(--ease);
+}
+.occ-prev:hover,.occ-next:hover{background:var(--emerald);color:var(--cream)}
+.occ-prev.swiper-button-disabled,.occ-next.swiper-button-disabled{opacity:.35;cursor:default}
+.occ-prev.swiper-button-disabled:hover,.occ-next.swiper-button-disabled:hover{background:transparent;color:var(--emerald-ink)}
+
+@media (prefers-reduced-motion:reduce){
+  .js .lm-in{animation:none}
+  ::view-transition-old(root),::view-transition-new(root){animation:none}
+  .occ-rail:not(.swiper-initialized) .swiper-wrapper{scroll-behavior:auto}
 }

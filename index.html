@@ -10,10 +10,11 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#1E3F32">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%231E3F32'/%3E%3Cpath d='M14 20h20l-2.2 12.2a3 3 0 0 1-3 2.8H19.2a3 3 0 0 1-3-2.8L14 20Z' fill='none' stroke='%23FAF7F2' stroke-width='2.4'/%3E%3Cpath d='M17 20c1-4.4 3.8-6.6 7-6.6s6 2.2 7 6.6' fill='none' stroke='%23D96B52' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="assets/vendor/swiper-bundle.min.css">
 <link rel="stylesheet" href="css/main.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"The Gilded Basket (Demo)","description":"Demonstration gift-basket storefront — a portfolio piece.","address":{"@type":"PostalAddress","addressLocality":"Lahore","addressCountry":"PK"}}
@@ -66,7 +67,7 @@
     <div class="wrap hero-in">
       <div>
         <span class="eyebrow">Hand-packed gift atelier</span>
-        <h1>Baskets that say it <em>beautifully</em> — before the card is even opened.</h1>
+        <h1><span class="lm"><span class="lm-in">Baskets that say it </span></span><span class="lm"><span class="lm-in"><em>beautifully</em> — before the </span></span><span class="lm"><span class="lm-in">card is even opened.</span></span></h1>
         <p class="hero-lede">Small-batch hampers composed like editorials: graded dry fruits, single-origin chocolate, preserves and keepsakes, packed to order in Lahore and delivered across Pakistan.</p>
         <div class="hero-cta">
           <a class="btn btn--terra" href="shop.html">Shop the collection</a>
@@ -185,22 +186,58 @@
         <h2>Matched to the moment</h2>
         <p>A wedding is not a birthday is not a boardroom. Start from the occasion and we will narrow the shelf for you.</p>
       </div>
-      <div class="occ-grid">
-        <a class="occ-card reveal" href="occasions.html#wedding" style="background:linear-gradient(150deg,#F4DED2,#FAF7F2)">
-          <svg class="occ-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="10" r="5.5"/></svg>
-          <h3>Weddings</h3><p>Keepsake boxes and trunk hampers worthy of the day — and of the photographs.</p>
-          <div class="occ-go">See wedding picks →</div>
-        </a>
-        <a class="occ-card reveal reveal-d1" href="occasions.html#corporate" style="background:linear-gradient(150deg,#EFE5D8,#FAF7F2)">
-          <svg class="occ-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2M3 13h18"/></svg>
-          <h3>Corporate</h3><p>Client and team gifting that reflects well on the sender — at any volume.</p>
-          <div class="occ-go">See corporate picks →</div>
-        </a>
-        <a class="occ-card reveal reveal-d2" href="occasions.html#birthday" style="background:linear-gradient(150deg,#F4DED2,#EFE5D8)">
-          <svg class="occ-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 20h16M5 20v-6h14v6M12 14v-2M8 14v-2M16 14v-2M12 8a1.6 1.6 0 1 0-1.6-1.6M8 8a1.6 1.6 0 1 0-1.6-1.6M16 8a1.6 1.6 0 1 0-1.6-1.6"/></svg>
-          <h3>Birthdays</h3><p>Chocolate towers, mini luxuries and custom builds tuned to the person, not the calendar.</p>
-          <div class="occ-go">See birthday picks →</div>
-        </a>
+      <div class="reveal">
+      <div class="swiper occ-rail">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <a class="occ-card" href="occasions.html#wedding" style="background:linear-gradient(150deg,#F4DED2,#FAF7F2)">
+              <svg class="occ-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="10" r="5.5"/></svg>
+              <h3>Weddings</h3><p>Keepsake boxes and trunk hampers worthy of the day — and of the photographs.</p>
+              <div class="occ-go">See wedding picks →</div>
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a class="occ-card" href="occasions.html#corporate" style="background:linear-gradient(150deg,#EFE5D8,#FAF7F2)">
+              <svg class="occ-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2M3 13h18"/></svg>
+              <h3>Corporate</h3><p>Client and team gifting that reflects well on the sender — at any volume.</p>
+              <div class="occ-go">See corporate picks →</div>
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a class="occ-card" href="occasions.html#birthday" style="background:linear-gradient(150deg,#F4DED2,#EFE5D8)">
+              <svg class="occ-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 20h16M5 20v-6h14v6M12 14v-2M8 14v-2M16 14v-2M12 8a1.6 1.6 0 1 0-1.6-1.6M8 8a1.6 1.6 0 1 0-1.6-1.6M16 8a1.6 1.6 0 1 0-1.6-1.6"/></svg>
+              <h3>Birthdays</h3><p>Chocolate towers, mini luxuries and custom builds tuned to the person, not the calendar.</p>
+              <div class="occ-go">See birthday picks →</div>
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a class="occ-card" href="occasions.html#eid" style="background:linear-gradient(150deg,#EFE5D8,#F4DED2)">
+              <svg class="occ-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M20 13.5A8.5 8.5 0 1 1 10.5 4 6.8 6.8 0 0 0 20 13.5Z"/></svg>
+              <h3>Eid</h3><p>Dates, done properly — graded khajoor, nuts and sweets composed for the table.</p>
+              <div class="occ-go">See Eid picks →</div>
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a class="occ-card" href="occasions.html#baby" style="background:linear-gradient(150deg,#FAF7F2,#F4DED2)">
+              <svg class="occ-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 21s-7-4.6-9.3-9A5.4 5.4 0 0 1 12 6.5 5.4 5.4 0 0 1 21.3 12C19 16.4 12 21 12 21Z"/></svg>
+              <h3>New baby</h3><p>Soft things, and kindness for the parents — gentle baskets for the first days.</p>
+              <div class="occ-go">See new baby picks →</div>
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a class="occ-card" href="occasions.html#thankyou" style="background:linear-gradient(150deg,#EFE5D8,#FAF7F2)">
+              <svg class="occ-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 11h16v9H4zM12 11v9M4 7h16v4H4zM12 7c-4 0-5-1.2-5-2.4C7 3.4 8 3 9 3c1.8 0 3 2 3 4Zm0 0c4 0 5-1.2 5-2.4C17 3.4 16 3 15 3c-1.8 0-3 2-3 4Z"/></svg>
+              <h3>Thank-you</h3><p>Small box, correct priorities — a considered thank-you beats a grand vague one.</p>
+              <div class="occ-go">See thank-you picks →</div>
+            </a>
+          </div>
+        </div>
+        <div class="occ-nav">
+          <button type="button" class="occ-prev" aria-label="Previous occasions">←</button>
+          <button type="button" class="occ-next" aria-label="Next occasions">→</button>
+          <div class="occ-pagination"></div>
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -242,21 +279,21 @@
         <h2>Before you ask</h2>
       </div>
       <div class="faq reveal">
-        <div class="faq-item">
-          <button type="button" class="faq-q" aria-expanded="false">How long does delivery take?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-          <div class="faq-a"><p>Baskets are packed to order within 48 hours. Lahore delivery is same/next day after dispatch; nationwide delivery takes 2–4 working days. Delivery is PKR 350, and free on orders over PKR 10,000.</p></div>
+        <div class="faq-item" data-alpine-faq x-data="{ open: false }" :class="{ open: open }">
+          <button type="button" class="faq-q" aria-expanded="false" :aria-expanded="open.toString()" @click="open = !open">How long does delivery take?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a" :style="open ? 'max-height: 320px' : 'max-height: 0px'"><p>Baskets are packed to order within 48 hours. Lahore delivery is same/next day after dispatch; nationwide delivery takes 2–4 working days. Delivery is PKR 350, and free on orders over PKR 10,000.</p></div>
         </div>
-        <div class="faq-item">
-          <button type="button" class="faq-q" aria-expanded="false">Can I include a personal message?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-          <div class="faq-a"><p>Yes — every basket includes a hand-written card at no charge. In the Build Your Basket flow you can write the message in step 4; for ready baskets, add it in the order notes at checkout.</p></div>
+        <div class="faq-item" data-alpine-faq x-data="{ open: false }" :class="{ open: open }">
+          <button type="button" class="faq-q" aria-expanded="false" :aria-expanded="open.toString()" @click="open = !open">Can I include a personal message?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a" :style="open ? 'max-height: 320px' : 'max-height: 0px'"><p>Yes — every basket includes a hand-written card at no charge. In the Build Your Basket flow you can write the message in step 4; for ready baskets, add it in the order notes at checkout.</p></div>
         </div>
-        <div class="faq-item">
-          <button type="button" class="faq-q" aria-expanded="false">Do you handle corporate or bulk orders?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-          <div class="faq-a"><p>Yes — from 10 to 1,000+ baskets, with branded sleeves and staggered delivery. See the Corporate page for tiers, or send an enquiry and we will reply within one working day.</p></div>
+        <div class="faq-item" data-alpine-faq x-data="{ open: false }" :class="{ open: open }">
+          <button type="button" class="faq-q" aria-expanded="false" :aria-expanded="open.toString()" @click="open = !open">Do you handle corporate or bulk orders?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a" :style="open ? 'max-height: 320px' : 'max-height: 0px'"><p>Yes — from 10 to 1,000+ baskets, with branded sleeves and staggered delivery. See the Corporate page for tiers, or send an enquiry and we will reply within one working day.</p></div>
         </div>
-        <div class="faq-item">
-          <button type="button" class="faq-q" aria-expanded="false">Is this a real shop?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-          <div class="faq-a"><p>No — The Gilded Basket is a demonstration storefront built as a portfolio piece. The full shopping flow works end to end, but no real orders are taken and no payment is processed.</p></div>
+        <div class="faq-item" data-alpine-faq x-data="{ open: false }" :class="{ open: open }">
+          <button type="button" class="faq-q" aria-expanded="false" :aria-expanded="open.toString()" @click="open = !open">Is this a real shop?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="faq-a" :style="open ? 'max-height: 320px' : 'max-height: 0px'"><p>No — The Gilded Basket is a demonstration storefront built as a portfolio piece. The full shopping flow works end to end, but no real orders are taken and no payment is processed.</p></div>
         </div>
       </div>
     </div>
@@ -342,5 +379,8 @@
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
 <script src="js/home.js"></script>
+<script defer src="assets/vendor/swiper-bundle.min.js"></script>
+<script defer src="js/premium.js"></script>
+<script defer src="assets/vendor/alpine.min.js"></script>
 </body>
 </html>
