@@ -196,6 +196,11 @@ input,select,textarea{font:inherit;font-size:16px;color:inherit;min-width:0}
   content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(185deg,rgba(20,16,14,0) 42%,rgba(20,16,14,.66) 78%,rgba(20,16,14,.82));
 }
+/* Signature card (Pass #3 touch-up, 2026-11-23): its photograph is the busiest in the set —
+   the headline needs a deeper, earlier scrim than the shared card gradient gives it. */
+.bento-card[href*="cat=signature"]::after{
+  background:linear-gradient(185deg,rgba(20,16,14,.08) 22%,rgba(20,16,14,.55) 55%,rgba(20,16,14,.78) 78%,rgba(20,16,14,.92));
+}
 .bento-card:hover .bento-bg{transform:scale(1.045)}
 .bento-card .bento-tag{
   position:absolute;top:1rem;left:1rem;background:rgba(250,247,242,.94);color:var(--charcoal);
@@ -673,6 +678,9 @@ input,select,textarea{font:inherit;font-size:16px;color:inherit;min-width:0}
   .logo-text small{letter-spacing:.18em}
   .header-actions{gap:.3rem}
   .icon-btn{width:42px;height:42px}
+  /* Pass #3 touch-up, 2026-11-23: ribbon copy wrapped awkwardly at phone width —
+     smaller, tighter ribbon on very small phones keeps it to a clean two lines. */
+  .demo-ribbon{font-size:.66rem;letter-spacing:.05em;padding:.5rem .6rem;line-height:1.45}
 }
 
 /* ---------- Reduced motion ---------- */
